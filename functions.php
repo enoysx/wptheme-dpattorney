@@ -108,6 +108,14 @@ function dpattorney_scripts() {
         DPATTORNEY_VERSION
     );
     
+    // Responsive Design CSS
+    wp_enqueue_style(
+        'dpattorney-responsive',
+        DPATTORNEY_URI . '/assets/css/responsive.css',
+        array('dpattorney-style'),
+        DPATTORNEY_VERSION
+    );
+    
     // Main JavaScript
     wp_enqueue_script(
         'dpattorney-main',

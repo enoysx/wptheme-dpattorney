@@ -71,13 +71,13 @@ $practice_areas = dpattorney_get_practice_areas();
     </section>
     
     <!-- CTA Section -->
-    <section class="section" style="padding-bottom: 6rem;">
+    <section class="section" style="padding-bottom: 3rem;">
         <div class="container">
-            <div class="cta-section reveal">
-                <h2 class="cta-title" style="font-size: 2.5rem; line-height: 1.2;">
+            <div class="cta-section reveal" style="text-align: center;">
+                <h2 class="cta-title" style="font-size: clamp(1.5rem, 5vw, 2.5rem); line-height: 1.2; margin-bottom: 1rem;">
                     <?php _e('Butuh solusi hukum khusus?', 'dpattorney'); ?>
                 </h2>
-                <p class="cta-description" style="margin-top: 1rem; margin-bottom: 2rem; color: rgba(255,255,255,0.6);">
+                <p class="cta-description" style="margin-bottom: 2rem; color: rgba(255,255,255,0.6); max-width: 600px; margin-left: auto; margin-right: auto;">
                     <?php _e('Tim ahli kami siap membantu Anda mengatasi tantangan hukum bisnis.', 'dpattorney'); ?>
                 </p>
                 <a href="<?php echo esc_url(get_page_link(get_page_by_path('kontak')->ID ?? 0)); ?>" class="btn btn-primary">
