@@ -319,5 +319,5 @@ function dpattorney_demo_content_notice() {
     });
 }
 
-// Uncomment to enable automatic demo setup on theme activation
-// add_action('admin_init', 'dpattorney_demo_content_notice', 11);
+// Enable demo setup via URL parameter (?dpattorney_demo_setup=1)
+add_action('admin_init', 'dpattorney_demo_content_notice', 11);

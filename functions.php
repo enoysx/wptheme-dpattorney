@@ -17,6 +17,22 @@ define('DPATTORNEY_DIR', get_template_directory());
 define('DPATTORNEY_URI', get_template_directory_uri());
 
 /**
+ * Flush Rewrite Rules on Theme Activation or Update
+ * Ensures custom post type archives are accessible
+ */
+function dpattorney_flush_rewrite_rules() {
+    $version = get_option('dpattorney_theme_version');
+    
+    // Flush if version doesn't match or not set
+    if ($version !== DPATTORNEY_VERSION) {
+        flush_rewrite_rules(false);
+        update_option('dpattorney_theme_version', DPATTORNEY_VERSION);
+    }
+}
+// Priority 20 to ensure post types are registered first
+add_action('init', 'dpattorney_flush_rewrite_rules', 20);
+
+/**
  * Theme Setup
  */
 function dpattorney_setup() {
@@ -949,6 +965,56 @@ function dpattorney_admin_notice() {
     }
 }
 add_action('admin_notices', 'dpattorney_admin_notice');
+
+/**
+ * Display demo content setup notice
+ */
+function dpattorney_demo_setup_notice() {
+    // Only show on dashboard
+    $screen = get_current_screen();
+    if ($screen->base !== 'dashboard') {
+        return;
+    }
+
+    // Check if demo content has been created (simple check: if team members exist)
+    $team_members = get_posts(array(
+        'post_type' => 'team_member',
+        'posts_per_page' => 1,
+    ));
+
+    // If demo content exists, don't show the notice
+    if (!empty($team_members)) {
+        return;
+    }
+
+    // Check user capability
+    if (!current_user_can('manage_options')) {
+        return;
+    }
+
+    $demo_setup_url = add_query_arg('dpattorney_demo_setup', '1', admin_url());
+    ?>
+    <div class="notice notice-info is-dismissible">
+        <p>
+            <strong><?php _e('D Pongkor & Partners Theme', 'dpattorney'); ?></strong><br>
+            <?php _e('Welcome! To see the theme in action with demo content, click the button below:', 'dpattorney'); ?>
+        </p>
+        <p>
+            <a href="<?php echo esc_url($demo_setup_url); ?>" class="button button-primary">
+                <?php _e('Generate Demo Content', 'dpattorney'); ?>
+            </a>
+            &nbsp;
+            <a href="<?php echo esc_url(admin_url('customize.php')); ?>" class="button">
+                <?php _e('Customize Theme', 'dpattorney'); ?>
+            </a>
+        </p>
+        <p style="color: #666; font-size: 0.9em;">
+            <?php _e('This will create sample team members, practice areas, insights, and job openings. You can delete these anytime from the respective menu items.', 'dpattorney'); ?>
+        </p>
+    </div>
+    <?php
+}
+add_action('admin_notices', 'dpattorney_demo_setup_notice');
 
 /**
  * Include required files
