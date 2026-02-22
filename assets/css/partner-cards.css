@@ -1,0 +1,542 @@
+/**
+ * Partner Card Component & Advanced Styles
+ * Inspired by Modern Law Firm Designs
+ *
+ * @package D_Pongkor_Partners
+ * @since 2.0.0
+ */
+
+/* ============================================
+   PARTNER CARD COMPONENT
+   Elegant card design for lawyer profiles
+   ============================================ */
+
+.team-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+}
+
+.team-card:hover {
+    border-color: rgba(249, 115, 22, 0.3);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(249, 115, 22, 0.1);
+}
+
+.team-card-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2/3;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+}
+
+.team-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.team-card:hover .team-card-image img {
+    transform: scale(1.08);
+}
+
+.team-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+    transition: opacity 0.4s ease;
+    opacity: 0;
+}
+
+.team-card:hover .team-card-overlay {
+    opacity: 1;
+}
+
+.team-card-info {
+    padding: 2rem 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.team-card-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--color-text-primary);
+    letter-spacing: -0.5px;
+    transition: color 0.3s ease;
+}
+
+.team-card:hover .team-card-name {
+    color: var(--color-orange-500);
+}
+
+.team-card-role {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-orange-500);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.team-card-expertise {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.team-card-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+    background: rgba(249, 115, 22, 0.1);
+    border: 1px solid rgba(249, 115, 22, 0.3);
+    border-radius: 0.375rem;
+    color: var(--color-orange-400);
+    transition: all 0.3s ease;
+}
+
+.team-card:hover .team-card-tag {
+    background: rgba(249, 115, 22, 0.2);
+    border-color: rgba(249, 115, 22, 0.6);
+}
+
+/* Responsive Grid */
+@media (min-width: 640px) {
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    .team-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+@media (min-width: 1280px) {
+    .team-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+}
+
+/* ============================================
+   LAWYER DETAIL PAGE STYLING
+   ============================================ */
+
+.team-detail-profile {
+    padding: 4rem 0;
+}
+
+.team-detail-grid {
+    display: grid;
+    gap: 4rem;
+}
+
+@media (min-width: 768px) {
+    .team-detail-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+    }
+}
+
+.team-detail-image {
+    position: relative;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    aspect-ratio: 2/3;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+    box-shadow: 0 20px 60px rgba(249, 115, 22, 0.15);
+}
+
+.team-detail-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.team-detail-name {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: -1px;
+}
+
+@media (max-width: 768px) {
+    .team-detail-name {
+        font-size: 1.875rem;
+    }
+}
+
+.team-detail-role {
+    font-size: 1.125rem;
+    color: var(--color-orange-500);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.5px;
+}
+
+.team-detail-expertise {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.team-detail-tag {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(249, 115, 22, 0.15);
+    border: 1px solid rgba(249, 115, 22, 0.4);
+    border-radius: 0.5rem;
+    color: var(--color-orange-400);
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.team-detail-tag:hover {
+    background: rgba(249, 115, 22, 0.25);
+    border-color: var(--color-orange-500);
+}
+
+.team-detail-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+}
+
+.team-detail-actions .btn {
+    flex: 0 1 auto;
+}
+
+.team-detail-section {
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.team-detail-section:last-child {
+    border-bottom: none;
+}
+
+.team-detail-section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.team-detail-section-title::before {
+    content: '';
+    display: block;
+    width: 3px;
+    height: 1.5rem;
+    background: var(--color-orange-500);
+    border-radius: 3px;
+}
+
+.team-detail-content {
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+}
+
+.team-detail-list {
+    list-style: none;
+    padding: 0;
+}
+
+.team-detail-list li {
+    padding: 0.75rem 0;
+    padding-left: 2rem;
+    position: relative;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+.team-detail-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--color-orange-500);
+    font-weight: 700;
+}
+
+.team-detail-badges {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+}
+
+.team-detail-badge {
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(249, 115, 22, 0.05) 100%);
+    border: 1px solid rgba(249, 115, 22, 0.2);
+    border-radius: 0.75rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.team-detail-badge:hover {
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(249, 115, 22, 0.1) 100%);
+    border-color: rgba(249, 115, 22, 0.5);
+    transform: translateY(-4px);
+}
+
+.team-detail-badge-text {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+}
+
+/* ============================================
+   TEAM GRID VARIATIONS
+   ============================================ */
+
+.team-grid {
+    display: grid;
+    gap: 2.5rem;
+}
+
+/* Two Column Layout */
+.team-grid.layout-2 {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+/* Three Column Layout */
+.team-grid.layout-3 {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+/* Four Column Layout */
+.team-grid.layout-4 {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+/* ============================================
+   TEAM TYPE TABS
+   ============================================ */
+
+.team-tabs {
+    display: flex;
+    gap: 1rem;
+    margin: 2.5rem 0;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1.5rem;
+}
+
+.team-tab {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background: none;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1.5rem;
+}
+
+.team-tab:hover {
+    color: var(--color-text-primary);
+}
+
+.team-tab.active {
+    color: var(--color-orange-500);
+    border-bottom-color: var(--color-orange-500);
+}
+
+/* ============================================
+   RELATED TEAM MEMBERS
+   ============================================ */
+
+.related-team {
+    margin-top: 4rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 3rem;
+}
+
+.related-team-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2.5rem;
+    color: var(--color-text-primary);
+}
+
+.related-team-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+/* ============================================
+   ANIMATIONS & INTERACTIONS
+   ============================================ */
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.team-card {
+    animation: slideInUp 0.6s ease-out forwards;
+}
+
+.team-card:nth-child(1) { animation-delay: 0.1s; }
+.team-card:nth-child(2) { animation-delay: 0.2s; }
+.team-card:nth-child(3) { animation-delay: 0.3s; }
+.team-card:nth-child(4) { animation-delay: 0.4s; }
+.team-card:nth-child(5) { animation-delay: 0.5s; }
+.team-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* ============================================
+   BUTTON ENHANCEMENTS
+   ============================================ */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-orange-500) 0%, var(--color-orange-600) 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--color-orange-500);
+    color: var(--color-orange-500);
+}
+
+.btn-outline:hover {
+    background: rgba(249, 115, 22, 0.1);
+    border-color: var(--color-orange-400);
+    color: var(--color-orange-400);
+}
+
+.btn-lg {
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+    .team-card-info {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .team-card-name {
+        font-size: 1.125rem;
+    }
+
+    .team-detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .team-tabs {
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        gap: 0.5rem;
+        padding-right: 1rem;
+    }
+
+    .team-detail-badges {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .team-card-image {
+        aspect-ratio: 3/4;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .team-detail-actions {
+        flex-direction: column;
+    }
+
+    .team-detail-name {
+        font-size: 1.75rem;
+    }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+    .team-card {
+        page-break-inside: avoid;
+    }
+
+    .team-detail-name,
+    .team-detail-role {
+        color: #000 !important;
+    }
+}
