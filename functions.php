@@ -33,6 +33,35 @@ function dpattorney_flush_rewrite_rules() {
 add_action('init', 'dpattorney_flush_rewrite_rules', 20);
 
 /**
+ * Force flush rewrite rules on admin access
+ * This ensures pages and custom post types work correctly
+ */
+function dpattorney_admin_flush_rules() {
+    // Only run once per hour to avoid performance impact
+    $last_flush = get_transient('dpattorney_flush_transient');
+    if (!$last_flush) {
+        flush_rewrite_rules(false);
+        set_transient('dpattorney_flush_transient', 1, HOUR_IN_SECONDS);
+    }
+}
+add_action('admin_init', 'dpattorney_admin_flush_rules', 5);
+
+/**
+ * Ensure permalinks are set to post name
+ * Fixes 404 errors on new pages
+ */
+function dpattorney_ensure_permalinks() {
+    $permalink_structure = get_option('permalink_structure');
+    
+    // If no structure set or is ugly URLs, set to post name
+    if (empty($permalink_structure) || $permalink_structure === '') {
+        update_option('permalink_structure', '/%postname%/');
+        flush_rewrite_rules(false);
+    }
+}
+add_action('admin_init', 'dpattorney_ensure_permalinks', 3);
+
+/**
  * Theme Setup
  */
 function dpattorney_setup() {
@@ -1033,3 +1062,20 @@ require_once DPATTORNEY_DIR . '/inc/schema-markup.php';
 require_once DPATTORNEY_DIR . '/inc/accessibility.php';
 require_once DPATTORNEY_DIR . '/inc/performance.php';
 require_once DPATTORNEY_DIR . '/inc/demo-content.php';
+
+/**
+ * Redirect to front-end view after publishing pages
+ * Prevents staying on the block editor screen after publish
+ */
+function dpattorney_redirect_after_publish( $location, $post_id ) {
+    // Only redirect for published pages
+    if ( get_post_type( $post_id ) === 'page' && get_post_status( $post_id ) === 'publish' ) {
+        $permalink = get_permalink( $post_id );
+        if ( $permalink ) {
+            return esc_url_raw( $permalink );
+        }
+    }
+
+    return $location;
+}
+add_filter( 'redirect_post_location', 'dpattorney_redirect_after_publish', 10, 2 );
